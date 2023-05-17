@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: Envirocar Mapmatching API
+  description: 'This API offers interfaces consuming raw envirocar GPS tracks and
+    deliver mapmatched tracks as result '
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.0.1
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- url: http://localhost:8080
+tags:
+- name: mapmatching
+  description: mapmatching endpoints
+paths:
+  /tracks/mapmatching:
+    post:
+      tags:
+      - mapmatching
+      summary: Upload a new raw envirocar track to perform mapmatching
+      description: Upload a new raw envirocar track to perform mapmatching
+      operationId: mapmatch_envirocar_track
+      requestBody:
+        description: raw envirocar track
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackRaw'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackMapMatched'
+        "400":
+          description: incorrect raw envirocar track
+      x-openapi-router-controller: swagger_server.controllers.mapmatching_controller
+components:
+  schemas:
+    TrackRaw:
+      type: object
+      description: The envirocar track as GeoJSON FeatureCollection.
+    TrackMapMatched:
+      type: object
+      description: The mapmatched track as GeoJSON FeatureCollection.
+
