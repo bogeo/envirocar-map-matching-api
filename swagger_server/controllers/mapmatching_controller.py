@@ -5,6 +5,9 @@ from swagger_server.models.track_map_matched import TrackMapMatched  # noqa: E50
 from swagger_server.models.track_raw import TrackRaw  # noqa: E501
 from swagger_server import util
 
+#ChangeStart!
+from .testmodul import testclass
+#changeEnd!
 
 def mapmatch_envirocar_track(body):  # noqa: E501
     """Upload a new raw envirocar track to perform mapmatching
@@ -18,4 +21,7 @@ def mapmatch_envirocar_track(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = TrackRaw.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        #ChangeStart!
+        test = testclass()
+        #changeEnd!
+    return {"Test":123}

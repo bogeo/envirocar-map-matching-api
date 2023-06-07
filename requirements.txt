@@ -4,12 +4,12 @@ python_dateutil == 2.6.0
 setuptools >= 21.0.0
 swagger-ui-bundle >= 0.0.2
 #Python-packages
-pandas >= 1.1.3
-geopandas >= 0.13.0
-numpy >= 1.19.2
-contextily >= 1.3.0
-shapely >= 2.0.1
-scipy >= 1.5.2
-request >= 2.24.0
+# pandas >= 1.1.3
+# geopandas >= 0.13.0
+# numpy >= 1.19.2
+# contextily >= 1.3.0
+# shapely >= 2.0.1
+# scipy >= 1.5.2
+#request >= 2.24.0
 #Not clear at the moment, if the following package is needed ...
-pyproj >= 3.5.0
+#pyproj >= 3.5.0
