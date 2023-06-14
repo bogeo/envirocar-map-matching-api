@@ -3,6 +3,8 @@ import json
 from shapely import Point
 from .mapmatching_mainmodule import *
 
+from swagger_server.models.track_map_matched import TrackMapMatched  # noqa: E501
+
 def loadTrackFromTxt(trackTxt) -> gp.GeoDataFrame:
     myCarTrackDict = json.loads(trackTxt)
     myCarTrackDictFeatures = myCarTrackDict['features']
@@ -35,5 +37,7 @@ def runmapmatchingMatchManualJSONInput(inputJSON):
     dijkstraTable = dijkstra(distanceGraph)
     #driveWayPtsGDF = getDriveWayPts(dijkstraTable, coordinatesSnappedPts)
     driveWayGDF, driveWayLine, osmIds = getDriveWay(dijkstraTable, coordinatesSnappedPts)
-    #TODO Maybe prepare output in trackMapMatched-Format here ... (???)
-    return driveWayGDF.to_wkt().to_dict() #to_json()
+    #prepare output in trackMapMatched-Format here and respond it as GeoJSON string
+    trackMapMatched = TrackMapMatched.from_dict(driveWayGDF.to_json())
+    # return as true dict (beautiful JSON web response)
+    return json.loads(trackMapMatched)
