@@ -6,7 +6,7 @@ from swagger_server.models.track_raw import TrackRaw  # noqa: E501
 from swagger_server import util
 
 #ChangeStart!
-from .mapmatching_matchManualJSONInput import run
+from .mapmatching_matchManualJSONInput import runmapmatchingMatchManualJSONInput
 #changeEnd!
 
 def mapmatch_envirocar_track(body):  # noqa: E501
@@ -21,7 +21,5 @@ def mapmatch_envirocar_track(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = TrackRaw.from_dict(connexion.request.get_json())  # noqa: E501
-        #TODO test muss in "passendes" Format für API-Ausgabe überführt werden!!! 
-        test = run(body).to_wkt()
-        print(test)
-        return "Test3"
+        #TODO Return output in trackMapMatched-Format ... (???)
+        return runmapmatchingMatchManualJSONInput(body)
